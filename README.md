@@ -1,2 +1,2 @@
-# MistyRecords
-Minecraft Mods: misty records 缥缈志
+# Misty Records
+Minecraft Mods: misty records
