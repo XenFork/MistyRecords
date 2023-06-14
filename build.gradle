@@ -19,6 +19,7 @@ allprojects {
     repositories {
         mavenCentral()
         mavenLocal()
+        maven { url 'https://maven.wispforest.io' }
         maven { url 'https://www.jitpack.io' }
         maven { url 'https://chinawaremc.github.io/maven-repo/' }
         maven { url 'https://raw.githubusercontent.com/baka4n/mvn-repo/master/' }
@@ -65,6 +66,13 @@ dependencies {
     mappings "net.fabricmc:yarn:$yarn_mappings:v2"
     modImplementation "net.fabricmc:fabric-loader:$loader_version"
     modImplementation "net.fabricmc.fabric-api:fabric-api:$fabric_version"
+    modImplementation "io.wispforest:owo-lib:0.11.0+1.20"
+    // only if you plan to use owo-config
+    annotationProcessor "io.wispforest:owo-lib:0.11.0+1.20"
+
+    // include this if you don't want force your users to install owo
+    // sentinel will warn them and give the option to download it automatically
+    include "io.wispforest:owo-sentinel:0.11.0+1.20"
 }
 
 processResources {
