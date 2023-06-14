@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "misty_records",
+  "version": "${version}",
+  "name": "misty_records",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/baka4n/nucleoplasm_normandy_login"
+  },
+  "license": "MIT",
+  "icon": "assets/misty_records/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "server": [
+      "union.xenfork.misty.records.MistyRecords"
+    ]
+  },
+  "mixins": [
+    "misty-records.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "nucleoplasm_api": "${nucleoplasm_api_version}-${minecraft_version}"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+    }
+  }
+}
