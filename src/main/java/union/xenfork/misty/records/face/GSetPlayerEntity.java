@@ -7,5 +7,22 @@ public interface GSetPlayerEntity {
     default double getAura() {throw new AssertionError();}
     default void setAura(double aura) {}
     default void addAura(double d) {}
+    default double getDefense() {throw new AssertionError();}
+    default void setDefense(double defense) {}
+    default void addDefense(double d) {}
+    default double getBlood() {throw new AssertionError();}
+    default void setBlood(double blood) {}
+    default void addBlood(double d) {}
+    default double getCriticalHit() {throw new AssertionError();}
+    default void setCriticalHit(double criticalHit) {}
+    default void addCriticalHit(double d) {}
+    default double getCriticalDamage() {throw new AssertionError();}
+    default void setCriticalDamage(double criticalDamage) {}
+    default void addCriticalDamage(double d) {}
 
+    default double getSpeed() {throw new AssertionError();}
+
+    default void setSpeed(double speed) {}
+
+    default void addSpeed(double d) {}
 }
