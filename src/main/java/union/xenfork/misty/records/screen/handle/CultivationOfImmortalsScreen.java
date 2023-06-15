@@ -20,6 +20,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CultivationOfImmortalsScreen extends BaseOwoScreen<FlowLayout> {
+    private final PlayerEntity entity;
+    public CultivationOfImmortalsScreen(PlayerEntity entity) {
+        this.entity = entity;
+    }
     @Override
     protected @NotNull OwoUIAdapter<FlowLayout> createAdapter() {
         return OwoUIAdapter.create(this, Containers::verticalFlow);
