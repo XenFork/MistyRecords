@@ -10,11 +10,13 @@ import union.xenfork.misty.records.face.GSetPlayerEntity;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements GSetPlayerEntity {
-    //             力量       灵气   防御      血量
-    private double strength, aura, defense, blood,
-    //       暴击         暴伤            速度     耐力
-            criticalHit, criticalDamage, speed, endurance, 
-    //      潜力       命中   闪避
+
+    private double
+            //力量     灵气   防御      血量
+            strength, aura, defense, blood,
+            //暴击        暴伤             速度     耐力
+            criticalHit, criticalDamage, speed, endurance,
+            //潜力     命中   闪避
             potential, hit, dodge;
     @Inject(method = "readCustomDataFromNbt", at = @At("RETURN"))
     private void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
