@@ -25,4 +25,16 @@ public interface GSetPlayerEntity {
     default void setSpeed(double speed) {}
 
     default void addSpeed(double d) {}
+
+    default double getEndurance() {throw new AssertionError();}
+
+    default void setEndurance(double endurance) {}
+
+    default void addEndurance(double d) {}
+
+    default double getPotential() {throw new AssertionError();}
+
+    default void setPotential(double potential) {}
+
+    default void addPotential(double d) {}
 }

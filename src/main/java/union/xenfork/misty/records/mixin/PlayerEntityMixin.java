@@ -10,8 +10,8 @@ import union.xenfork.misty.records.face.GSetPlayerEntity;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements GSetPlayerEntity {
-    //             力量       灵气   防御      血量    暴击         暴伤            速度
-    private double strength, aura, defense, blood, criticalHit, criticalDamage, speed;
+    //             力量       灵气   防御      血量    暴击         暴伤            速度     耐力       潜力
+    private double strength, aura, defense, blood, criticalHit, criticalDamage, speed, endurance, potential;
     @Inject(method = "readCustomDataFromNbt", at = @At("RETURN"))
     private void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
         setStrength((nbt.contains("strength")) ? nbt.getDouble("strength") : 0.0d);
@@ -133,5 +133,32 @@ public class PlayerEntityMixin implements GSetPlayerEntity {
     @Override
     public void addSpeed(double d) {
         this.speed+=d;
+    }
+
+    @Override
+    public double getEndurance() {
+        return endurance;
+    }
+
+    @Override
+    public void setEndurance(double endurance) {
+        this.endurance = endurance;
+    }
+
+    @Override
+    public void addEndurance(double d) {
+        this.endurance+=d;
+    }
+    @Override
+    public double getPotential() {
+        return potential;
+    }
+    @Override
+    public void setPotential(double potential) {
+        this.potential = potential;
+    }
+    @Override
+    public void addPotential(double d) {
+        this.potential+=d;
     }
 }
