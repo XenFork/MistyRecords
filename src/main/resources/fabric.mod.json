@@ -14,6 +14,9 @@
   "entrypoints": {
     "server": [
       "union.xenfork.misty.records.MistyRecords"
+    ],
+    "client": [
+      "union.xenfork.misty.records.MistyRecordsClient"
     ]
   },
   "mixins": [
@@ -23,8 +26,7 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "fabric-api": "*",
-    "minecraft": "${minecraft_version}",
-    "nucleoplasm_api": "${nucleoplasm_api_version}-${minecraft_version}"
+    "minecraft": "${minecraft_version}"
   },
   "custom": {
     "loom:injected_interfaces": {
