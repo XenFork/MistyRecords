@@ -1,6 +1,18 @@
 package union.xenfork.misty.records.face;
 
 public interface GSetPlayerEntity {
+    default double getDodge() {throw new AssertionError();}
+
+    default void setDodge(double dodge) {}
+
+    default void addDodge(double d) {}
+
+    default double getHit() {throw new AssertionError();}
+
+    default void setHit(double hit) {}
+
+    default void addHit(double d) {}
+
     default double getStrength() {throw new AssertionError();}
     default void setStrength(double strength) {}
     default void addStrength(double d) {}

@@ -10,8 +10,12 @@ import union.xenfork.misty.records.face.GSetPlayerEntity;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements GSetPlayerEntity {
-    //             力量       灵气   防御      血量    暴击         暴伤            速度     耐力       潜力
-    private double strength, aura, defense, blood, criticalHit, criticalDamage, speed, endurance, potential;
+    //             力量       灵气   防御      血量
+    private double strength, aura, defense, blood,
+    //       暴击         暴伤            速度     耐力
+            criticalHit, criticalDamage, speed, endurance, 
+    //      潜力       命中   闪避
+            potential, hit, dodge;
     @Inject(method = "readCustomDataFromNbt", at = @At("RETURN"))
     private void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
         setStrength((nbt.contains("strength")) ? nbt.getDouble("strength") : 0.0d);
@@ -19,7 +23,12 @@ public class PlayerEntityMixin implements GSetPlayerEntity {
         setDefense(nbt.contains("defense") ? nbt.getDouble("defense") : 0.0d);
         setBlood(nbt.contains("blood") ? nbt.getDouble("blood") : 0.0d);
         setCriticalHit(nbt.contains("criticalHit") ? nbt.getDouble("criticalHit") : 0.0d);
-        setCriticalDamage(nbt.contains("violentInjury") ? nbt.getDouble("violentInjury") : 0.0d);
+        setCriticalDamage(nbt.contains("criticalDamage") ? nbt.getDouble("criticalDamage") : 0.0d);
+        setSpeed(nbt.contains("speed") ? nbt.getDouble("speed") : 0.0d);
+        setEndurance(nbt.contains("endurance") ? nbt.getDouble("endurance") : 0.0d);
+        setPotential(nbt.contains("potential") ? nbt.getDouble("potential") : 0.0d);
+        setHit(nbt.contains("hit") ? nbt.getDouble("hit") : 0.0d);
+        setDodge(nbt.contains("dodge") ? nbt.getDouble("dodge") : 0.0d);
     }
 
     @Inject(method = "writeCustomDataToNbt", at = @At("RETURN"))
@@ -29,7 +38,37 @@ public class PlayerEntityMixin implements GSetPlayerEntity {
         nbt.putDouble("defense", getDefense());
         nbt.putDouble("blood", getBlood());
         nbt.putDouble("criticalHit", getCriticalHit());
-        nbt.putDouble("violentInjury", getCriticalDamage());
+        nbt.putDouble("criticalDamage", getCriticalDamage());
+        nbt.putDouble("speed", getSpeed());
+        nbt.putDouble("endurance", getEndurance());
+        nbt.putDouble("potential", getPotential());
+        nbt.putDouble("hit", getHit());
+        nbt.putDouble("dodge", getDodge());
+    }
+    @Override
+    public double getDodge() {
+        return dodge;
+    }
+    @Override
+    public void setDodge(double dodge) {
+        this.dodge = dodge;
+    }
+    @Override
+    public void addDodge(double d) {
+        this.dodge+=d;
+    }
+
+    @Override
+    public double getHit() {
+        return hit;
+    }
+    @Override
+    public void setHit(double hit) {
+        this.hit = hit;
+    }
+    @Override
+    public void addHit(double d) {
+        this.hit+=d;
     }
 
     @Override
