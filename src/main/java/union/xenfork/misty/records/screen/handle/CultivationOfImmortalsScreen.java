@@ -30,8 +30,8 @@ public class CultivationOfImmortalsScreen extends BaseOwoScreen<FlowLayout> {
                 .verticalAlignment(VerticalAlignment.CENTER);
         rootComponent.child(
                 Containers.verticalFlow(Sizing.content(), Sizing.content())
-                        .child(Components.textArea(Sizing.content(10), Sizing.content(10), ""))
-                        .padding(Insets.of(10))
+                        .child(Components.textArea(Sizing.fixed(50), Sizing.fixed(30), "123"))
+                        .padding(Insets.of(100))
                         .surface(Surface.DARK_PANEL)
                         .verticalAlignment(VerticalAlignment.CENTER)
                         .horizontalAlignment(HorizontalAlignment.CENTER)
