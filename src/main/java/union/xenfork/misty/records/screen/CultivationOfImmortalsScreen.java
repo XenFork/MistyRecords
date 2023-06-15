@@ -1,4 +1,4 @@
-package union.xenfork.misty.records.screen.handle;
+package union.xenfork.misty.records.screen;
 
 import io.wispforest.owo.ui.base.BaseOwoScreen;
 import io.wispforest.owo.ui.component.ButtonComponent;
@@ -20,9 +20,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CultivationOfImmortalsScreen extends BaseOwoScreen<FlowLayout> {
-    private final PlayerEntity entity;
-    public CultivationOfImmortalsScreen(PlayerEntity entity) {
-        this.entity = entity;
+    private final PlayerEntity player;
+    public CultivationOfImmortalsScreen(PlayerEntity player) {
+        this.player = player;
     }
     @Override
     protected @NotNull OwoUIAdapter<FlowLayout> createAdapter() {

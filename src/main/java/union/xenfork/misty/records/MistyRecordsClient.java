@@ -1,16 +1,11 @@
 package union.xenfork.misty.records;
 
-import io.wispforest.owo.ui.hud.Hud;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import org.lwjgl.glfw.GLFW;
-import union.xenfork.misty.records.screen.handle.CultivationOfImmortalsScreen;
-
-import java.text.MessageFormat;
+import union.xenfork.misty.records.screen.CultivationOfImmortalsScreen;
 
 public class MistyRecordsClient implements ClientModInitializer {
     public static final String modid = "misty_records";
