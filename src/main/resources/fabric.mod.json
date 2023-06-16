@@ -6,13 +6,13 @@
   "description": "",
   "authors": [],
   "contact": {
-    "repo": "https://github.com/baka4n/nucleoplasm_normandy_login"
+    "repo": ""
   },
   "license": "MIT",
   "icon": "assets/misty_records/icon.png",
   "environment": "*",
   "entrypoints": {
-    "server": [
+    "main": [
       "union.xenfork.misty.records.MistyRecords"
     ],
     "client": [

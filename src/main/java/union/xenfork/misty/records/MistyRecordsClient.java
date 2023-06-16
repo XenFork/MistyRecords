@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import org.lwjgl.glfw.GLFW;
-import union.xenfork.misty.records.screen.CultivationOfImmortalsScreen;
 
 public class MistyRecordsClient implements ClientModInitializer {
     public static final String modid = "misty_records";
@@ -15,9 +14,7 @@ public class MistyRecordsClient implements ClientModInitializer {
     public void onInitializeClient() {
         KeyBindingHelper.registerKeyBinding(TEST);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (TEST.wasPressed()) {
-                client.setScreen(new CultivationOfImmortalsScreen(client.player));
-            }
+
         });
 
     }

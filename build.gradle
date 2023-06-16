@@ -55,8 +55,7 @@ ext {
         reader.close()
     }
 }
-
-version = findProperty("${"$base_name".replace("-", "_")}_version-$minecraft_version")
+version = "$misty_records_version-$minecraft_version"
 group = maven_group
 def targetJavaVersion =
         Integer.parseInt(String.valueOf((sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17)))
