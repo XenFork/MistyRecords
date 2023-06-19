@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.PersistentStateManager;
 import union.xenfork.misty.records.item.ModItems;
@@ -38,6 +37,7 @@ public class MistyRecords implements ModInitializer {
             data.writeDouble(playerState.potential);
             data.writeDouble(playerState.hit);
             data.writeDouble(playerState.dodge);
+            ServerPlayNetworking.send(handler.player, capacityStateId, data);
         });
     }
 }
