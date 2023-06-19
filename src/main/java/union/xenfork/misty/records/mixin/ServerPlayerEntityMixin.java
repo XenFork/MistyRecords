@@ -1,167 +1,224 @@
 package union.xenfork.misty.records.mixin;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import union.xenfork.misty.records.face.GSetPlayerEntity;
-import union.xenfork.misty.records.states.CapacityState;
 
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin implements GSetPlayerEntity {
+
+    public double
+            //力量     灵气   防御      血量
+            strength = 0, aura = 0, defense= 0, blood= 0,
+    //暴击        暴伤             速度     耐力
+    criticalHit= 0, criticalDamage= 0, speed= 0, endurance= 0,
+    //潜力     命中   闪避
+    potential= 0, hit= 0, dodge= 0;
+
     private final ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
+
     @Override
     public double getDodge() {
-        return CapacityState.getPlayerState(player).dodge;
+        return dodge;
     }
+
     @Override
     public void setDodge(double dodge) {
-        CapacityState.getPlayerState(player).dodge = dodge;
+        this.dodge = dodge;
     }
+
     @Override
     public void addDodge(double d) {
-        CapacityState.getPlayerState(player).dodge+=d;
+        this.dodge+=d;
+    }
+
+    @Inject(method = "readCustomDataFromNbt", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
+    private void readCustomDataFromNbt(NbtCompound nbt,
+                                       CallbackInfo ci,
+                                       NbtCompound nbtCompound) {
+        strength = nbt.getDouble("strength");
+        aura = nbt.getDouble("aura");
+        blood = nbt.getDouble("blood");
+        defense = nbt.getDouble("defense");
+        criticalHit = nbt.getDouble("criticalHit");
+        criticalDamage = nbt.getDouble("criticalDamage");
+        speed = nbt.getDouble("speed");
+        endurance = nbt.getDouble("endurance");
+        potential = nbt.getDouble("potential");
+        hit = nbt.getDouble("hit");
+        dodge = nbt.getDouble("dodge");
+    }
+
+    @Inject(method = "writeCustomDataToNbt", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
+    private void writeCustomDataToNbt(NbtCompound nbt,
+                                      CallbackInfo ci,
+                                      Entity entity,
+                                      Entity entity2,
+                                      NbtCompound nbtCompound2,
+                                      NbtCompound nbtCompound3) {
+        nbt.putDouble("strength", strength);
+        nbt.putDouble("aura", aura);
+        nbt.putDouble("defense", defense);
+        nbt.putDouble("blood", blood);
+        nbt.putDouble("criticalHit", criticalHit);
+        nbt.putDouble("criticalDamage", criticalDamage);
+        nbt.putDouble("speed", speed);
+        nbt.putDouble("endurance", endurance);
+        nbt.putDouble("potential", potential);
+        nbt.putDouble("hit", hit);
+        nbt.putDouble("dodge", dodge);
     }
 
     @Override
     public double getHit() {
-        return CapacityState.getPlayerState(player).hit;
+        return hit;
     }
+
     @Override
     public void setHit(double hit) {
-        CapacityState.getPlayerState(player).hit = hit;
+        this.hit = hit;
     }
+
     @Override
     public void addHit(double d) {
-        CapacityState.getPlayerState(player).hit+=d;
+        this.hit+=d;
     }
 
     @Override
     public double getStrength() {
-        return CapacityState.getPlayerState(player).strength;
+        return strength;
     }
 
     @Override
     public void setStrength(double strength) {
-        CapacityState.getPlayerState(player).strength = strength;
+        this.strength = strength;
     }
 
     @Override
     public void addStrength(double d) {
-        CapacityState.getPlayerState(player).strength+=d;
+        this.strength+=d;
     }
 
     @Override
     public double getAura() {
-        return CapacityState.getPlayerState(player).aura;
+        return aura;
     }
 
     @Override
     public void setAura(double aura) {
-        CapacityState.getPlayerState(player).aura = aura;
+        this.aura = aura;
     }
 
     @Override
     public void addAura(double d) {
-        CapacityState.getPlayerState(player).aura+=d;
+        aura+=d;
     }
 
     @Override
     public double getDefense() {
-        return CapacityState.getPlayerState(player).defense;
+        return defense;
     }
 
     @Override
     public void setDefense(double defense) {
-        CapacityState.getPlayerState(player).defense = defense;
+        this.defense = defense;
     }
 
     @Override
     public void addDefense(double d) {
-        CapacityState.getPlayerState(player).defense+=d;
+        defense+=d;
     }
 
     @Override
     public double getBlood() {
-        return CapacityState.getPlayerState(player).blood;
+        return blood;
     }
 
     @Override
     public void setBlood(double blood) {
-        CapacityState.getPlayerState(player).blood = blood;
+        this.blood = blood;
     }
 
     @Override
     public void addBlood(double d) {
-        CapacityState.getPlayerState(player).blood+=d;
+        blood+=d;
     }
 
     @Override
     public double getCriticalHit() {
-        return CapacityState.getPlayerState(player).criticalHit;
+        return criticalHit;
     }
 
     @Override
     public void setCriticalHit(double criticalHit) {
-        CapacityState.getPlayerState(player).criticalHit = criticalHit;
+        this.criticalHit = criticalHit;
     }
 
     @Override
     public void addCriticalHit(double d) {
-        CapacityState.getPlayerState(player).criticalHit+=d;
+        criticalHit+=d;
     }
 
     @Override
     public double getCriticalDamage() {
-        return CapacityState.getPlayerState(player).criticalDamage;
+        return criticalDamage;
     }
 
     @Override
     public void setCriticalDamage(double criticalDamage) {
-        CapacityState.getPlayerState(player).criticalDamage = criticalDamage;
+        this.criticalDamage = criticalDamage;
     }
 
     @Override
     public void addCriticalDamage(double d) {
-        CapacityState.getPlayerState(player).criticalDamage+=d;
+        criticalDamage+=d;
     }
+
     @Override
     public double getSpeed() {
-        return CapacityState.getPlayerState(player).speed;
+        return speed;
     }
+
     @Override
     public void setSpeed(double speed) {
-        CapacityState.getPlayerState(player).speed = speed;
+        this.speed = speed;
     }
 
     @Override
     public void addSpeed(double d) {
-        CapacityState.getPlayerState(player).speed+=d;
+        speed+=d;
     }
 
     @Override
     public double getEndurance() {
-        return CapacityState.getPlayerState(player).endurance;
+        return endurance;
     }
 
     @Override
     public void setEndurance(double endurance) {
-        CapacityState.getPlayerState(player).endurance = endurance;
+        this.endurance = endurance;
     }
 
     @Override
     public void addEndurance(double d) {
-        CapacityState.getPlayerState(player).endurance+=d;
+        endurance+=d;
     }
     @Override
     public double getPotential() {
-        return CapacityState.getPlayerState(player).potential;
+        return potential;
     }
     @Override
     public void setPotential(double potential) {
-        CapacityState.getPlayerState(player).potential = potential;
+        this.potential = potential;
     }
     @Override
     public void addPotential(double d) {
-        CapacityState.getPlayerState(player).potential+=d;
+        potential+=d;
     }
 }
