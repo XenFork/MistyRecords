@@ -3,6 +3,7 @@ package union.xenfork.misty.records.states;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.PersistentState;
 import net.minecraft.world.PersistentStateManager;
 
@@ -14,8 +15,8 @@ import static union.xenfork.misty.records.MistyRecords.modid;
 public class CapacityState extends PersistentState {
     public HashMap<UUID, PlayerState> players = new HashMap<>();
 
-    public static PlayerState getPlayerState(LivingEntity player) {
-        CapacityState capacityState = getCapacityState(player.getWorld().getServer());
+    public static PlayerState getPlayerState(ServerPlayerEntity player) {
+        CapacityState capacityState = getCapacityState(player.getServerWorld().getServer());
         return capacityState.players.computeIfAbsent(player.getUuid(), uuid -> new PlayerState());
     }
 

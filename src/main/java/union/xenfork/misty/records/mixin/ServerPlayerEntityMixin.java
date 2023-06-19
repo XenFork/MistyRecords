@@ -1,21 +1,14 @@
 package union.xenfork.misty.records.mixin;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import union.xenfork.misty.records.face.GSetPlayerEntity;
 import union.xenfork.misty.records.states.CapacityState;
 
-@Mixin(PlayerEntity.class)
-public class PlayerEntityMixin implements GSetPlayerEntity {
-
-    private double
-            //力量     灵气   防御      血量
-            strength, aura, defense, blood,
-            //暴击        暴伤             速度     耐力
-            criticalHit, criticalDamage, speed, endurance,
-            //潜力     命中   闪避
-            potential, hit, dodge;
-    private final PlayerEntity player = (PlayerEntity) (Object) this;
+@Mixin(ServerPlayerEntity.class)
+public class ServerPlayerEntityMixin implements GSetPlayerEntity {
+    private final ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
     @Override
     public double getDodge() {
         return CapacityState.getPlayerState(player).dodge;
@@ -59,7 +52,7 @@ public class PlayerEntityMixin implements GSetPlayerEntity {
 
     @Override
     public double getAura() {
-       return CapacityState.getPlayerState(player).aura;
+        return CapacityState.getPlayerState(player).aura;
     }
 
     @Override

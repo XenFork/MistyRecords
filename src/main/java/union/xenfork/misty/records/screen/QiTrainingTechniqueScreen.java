@@ -8,14 +8,15 @@ import io.wispforest.owo.ui.container.Containers;
 import io.wispforest.owo.ui.container.FlowLayout;
 import io.wispforest.owo.ui.core.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
 public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
-    private final PlayerEntity player;
-    public QiTrainingTechniqueScreen(PlayerEntity player) {
+    private final ServerPlayerEntity player;
+    public QiTrainingTechniqueScreen(ServerPlayerEntity player) {
         this.player = player;
 
     }
