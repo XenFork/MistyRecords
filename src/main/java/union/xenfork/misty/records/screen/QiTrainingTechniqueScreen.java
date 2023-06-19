@@ -17,21 +17,18 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
     private final PlayerEntity player;
     public QiTrainingTechniqueScreen(PlayerEntity player) {
         this.player = player;
+
     }
     public static final Text hu_ = Text.literal("hu");
     public static final Text xi_ = Text.literal("xi");
     public static final Text d = Text.literal(".");
 
-    public static class Ref {
-        public boolean isHu = true;
-        public boolean isSleep = false;
-        public int time = 0;
-        public int ran = 0;
-    }
 
-    private final Ref ref = new Ref();
-    private LabelComponent test = Components.label(hu_);
-    private ButtonComponent hu, xi;
+
+    private final LabelComponent test = Components.label(hu_);
+    private int time = 0;
+    private int ran;
+    boolean isHu;
 
     @Override
     protected @NotNull OwoUIAdapter<FlowLayout> createAdapter() {
@@ -41,15 +38,16 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
     @Override
     public void tick() {
         super.tick();
-        if (hu.getMessage().equals(d)) {
-            ref.time++;
-            if (ref.time == 0)
-                ref.ran = new Random().nextInt(10, 30);
-            if (ref.time >= ref.ran) {
-                ref.time = 0;
-                if (ref.isHu) test.text(hu_);
-                else test.text(xi_);
+        if (test.text().equals(d)) {
+            time++;
 
+            if (time >= ran) {
+                time = 0;
+                if (isHu) {
+                    test.text(hu_);
+                } else {
+                    test.text(xi_);
+                }
             }
         }
     }
@@ -61,22 +59,23 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
                 .horizontalAlignment(HorizontalAlignment.CENTER)
                 .verticalAlignment(VerticalAlignment.CENTER);
 
-        hu = Components.button(hu_, buttonC -> {
+        ButtonComponent hu = Components.button(hu_, buttonC -> {
             if (test.text().equals(buttonC.getMessage())) {
-                player.addAura(new Random().nextDouble(0.0d, 0.33333333d));
-                ref.isHu = false;
-                ref.isSleep = true;
-                ref.time = 0;
+                isHu = false;
+                time = 0;
+                ran = new Random().nextInt(10*10, 70*10);
+                System.out.println(player.getAura());
                 test.text(d);
             }
         });
 
-         xi = Components.button(xi_, buttonC -> {
+        ButtonComponent xi = Components.button(xi_, buttonC -> {
             if (test.text().equals(buttonC.getMessage())) {
-                player.addAura(new Random().nextDouble(0.0d, 0.66666667d));
-                ref.isHu = true;
-                ref.isSleep = true;
-                ref.time = 0;
+                isHu = true;
+                time = 0;
+                ran = new Random().nextInt(10*10, 70*10);
+                player.addAura(new Random().nextDouble(0.0d, 1.0001d));
+                System.out.println(player.getAura());
                 test.text(d);
             }
         });

@@ -18,7 +18,7 @@ public class ExercisesBookItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.isClient) {
             MinecraftClient instance = MinecraftClient.getInstance();
-            instance.setScreen(new QiTrainingTechniqueScreen(instance.player));
+            instance.setScreen(new QiTrainingTechniqueScreen(user));
         }
         return super.use(world, user, hand);
     }

@@ -14,7 +14,6 @@ public class MistyRecordsClient implements ClientModInitializer {
     public void onInitializeClient() {
         KeyBindingHelper.registerKeyBinding(TEST);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-
         });
 
     }
