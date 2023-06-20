@@ -1,18 +1,15 @@
 package union.xenfork.misty.records.mixin;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import union.xenfork.misty.records.face.GSetPlayerEntity;
 
-@Mixin(ServerPlayerEntity.class)
-public class ServerPlayerEntityMixin implements GSetPlayerEntity {
-
+@Mixin(PlayerAbilities.class)
+public class PlayerAbilitiesMixin implements GSetPlayerEntity {
     public double
             //力量     灵气   防御      血量
             strength = 0, aura = 0, defense= 0, blood= 0,
@@ -20,8 +17,35 @@ public class ServerPlayerEntityMixin implements GSetPlayerEntity {
     criticalHit= 0, criticalDamage= 0, speed= 0, endurance= 0,
     //潜力     命中   闪避
     potential= 0, hit= 0, dodge= 0;
+    @Inject(method = "readNbt", at = @At("RETURN"))
+    private void read(NbtCompound nbt, CallbackInfo ci) {
+        strength = nbt.getDouble("strength");
+        aura = nbt.getDouble("aura");
+        blood = nbt.getDouble("blood");
+        defense = nbt.getDouble("defense");
+        criticalHit = nbt.getDouble("criticalHit");
+        criticalDamage = nbt.getDouble("criticalDamage");
+        speed = nbt.getDouble("speed");
+        endurance = nbt.getDouble("endurance");
+        potential = nbt.getDouble("potential");
+        hit = nbt.getDouble("hit");
+        dodge = nbt.getDouble("dodge");
+    }
 
-    private final ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
+    @Inject(method = "writeNbt", at = @At("RETURN"))
+    private void write(NbtCompound nbt, CallbackInfo ci) {
+        nbt.putDouble("strength", strength);
+        nbt.putDouble("aura", aura);
+        nbt.putDouble("defense", defense);
+        nbt.putDouble("blood", blood);
+        nbt.putDouble("criticalHit", criticalHit);
+        nbt.putDouble("criticalDamage", criticalDamage);
+        nbt.putDouble("speed", speed);
+        nbt.putDouble("endurance", endurance);
+        nbt.putDouble("potential", potential);
+        nbt.putDouble("hit", hit);
+        nbt.putDouble("dodge", dodge);
+    }
 
     @Override
     public double getDodge() {
@@ -36,43 +60,6 @@ public class ServerPlayerEntityMixin implements GSetPlayerEntity {
     @Override
     public void addDodge(double d) {
         this.dodge+=d;
-    }
-
-    @Inject(method = "readCustomDataFromNbt", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-    private void readCustomDataFromNbt(NbtCompound nbt,
-                                       CallbackInfo ci,
-                                       NbtCompound nbtCompound) {
-        strength = nbt.getDouble("strength");
-        aura = nbt.getDouble("aura");
-        blood = nbt.getDouble("blood");
-        defense = nbt.getDouble("defense");
-        criticalHit = nbt.getDouble("criticalHit");
-        criticalDamage = nbt.getDouble("criticalDamage");
-        speed = nbt.getDouble("speed");
-        endurance = nbt.getDouble("endurance");
-        potential = nbt.getDouble("potential");
-        hit = nbt.getDouble("hit");
-        dodge = nbt.getDouble("dodge");
-    }
-
-    @Inject(method = "writeCustomDataToNbt", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-    private void writeCustomDataToNbt(NbtCompound nbt,
-                                      CallbackInfo ci,
-                                      Entity entity,
-                                      Entity entity2,
-                                      NbtCompound nbtCompound2,
-                                      NbtCompound nbtCompound3) {
-        nbt.putDouble("strength", strength);
-        nbt.putDouble("aura", aura);
-        nbt.putDouble("defense", defense);
-        nbt.putDouble("blood", blood);
-        nbt.putDouble("criticalHit", criticalHit);
-        nbt.putDouble("criticalDamage", criticalDamage);
-        nbt.putDouble("speed", speed);
-        nbt.putDouble("endurance", endurance);
-        nbt.putDouble("potential", potential);
-        nbt.putDouble("hit", hit);
-        nbt.putDouble("dodge", dodge);
     }
 
     @Override
@@ -221,4 +208,5 @@ public class ServerPlayerEntityMixin implements GSetPlayerEntity {
     public void addPotential(double d) {
         potential+=d;
     }
+
 }

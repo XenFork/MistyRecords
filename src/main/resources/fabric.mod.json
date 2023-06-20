@@ -30,7 +30,7 @@
   },
   "custom": {
     "loom:injected_interfaces": {
-      "net/minecraft/server/network/ServerPlayerEntity": ["union/xenfork/misty/records/face/GSetPlayerEntity"]
+      "net/minecraft/entity/player/PlayerAbilities": ["union/xenfork/misty/records/face/GSetPlayerEntity"]
     }
   }
 }
