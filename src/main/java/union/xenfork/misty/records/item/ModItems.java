@@ -11,7 +11,7 @@ import java.util.function.Function;
 import static union.xenfork.misty.records.MistyRecords.modid;
 
 public enum ModItems {
-    test(settings -> new Item(settings.maxCount(64)));
+    test(settings -> new SkillsBook(settings.maxCount(1)));
     private final Identifier id;
     private final Item item;
     ModItems(Function<Item.Settings, Item> function) {

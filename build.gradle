@@ -28,6 +28,10 @@ allprojects {
         maven { url 'https://s01.oss.sonatype.org/content/repositories/releases' }
         maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots' }
         maven { url 'https://maven.fabricmc.net/' }
+        maven {
+            name = 'Ladysnake Mods'
+            url = 'https://ladysnake.jfrog.io/artifactory/mods'
+        }
     }
 }
 
@@ -65,13 +69,29 @@ dependencies {
     mappings "net.fabricmc:yarn:$yarn_mappings:v2"
     modImplementation "net.fabricmc:fabric-loader:$loader_version"
     modImplementation "net.fabricmc.fabric-api:fabric-api:$fabric_version"
-    modImplementation "io.wispforest:owo-lib:0.11.0+1.20"
+    modImplementation "io.wispforest:owo-lib:$owo_lib_version"
     // only if you plan to use owo-config
-    annotationProcessor "io.wispforest:owo-lib:0.11.0+1.20"
+    annotationProcessor "io.wispforest:owo-lib:$owo_lib_version"
     // {@line https://docs.wispforest.io/owo/ui/getting-started/}
     // include this if you don't want force your users to install owo
     // sentinel will warn them and give the option to download it automatically
-    include "io.wispforest:owo-sentinel:0.11.0+1.20"
+    include "io.wispforest:owo-sentinel:$owo_lib_version"
+    def cca_modules = [
+            "cardinal-components-api",
+            "cardinal-components-base",
+            "cardinal-components-block",
+            "cardinal-components-chunk",
+            "cardinal-components-entity",
+            "cardinal-components-item",
+            "cardinal-components-level",
+            "cardinal-components-scoreboard",
+            "cardinal-components-world",
+    ]
+    for (final def cca in cca_modules) {
+        modImplementation "dev.onyxstudios.cardinal-components-api:$cca:$cca_version"
+    }
+
+
 }
 
 processResources {

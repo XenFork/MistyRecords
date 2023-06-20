@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import union.xenfork.misty.records.face.GSetPlayerEntity;
 
 @Mixin(PlayerAbilities.class)
@@ -17,6 +18,7 @@ public class PlayerAbilitiesMixin implements GSetPlayerEntity {
     criticalHit= 0, criticalDamage= 0, speed= 0, endurance= 0,
     //潜力     命中   闪避
     potential= 0, hit= 0, dodge= 0;
+    private final PlayerAbilities abilities = (PlayerAbilities) (Object) this;
     @Inject(method = "readNbt", at = @At("RETURN"))
     private void read(NbtCompound nbt, CallbackInfo ci) {
         strength = nbt.getDouble("strength");
@@ -32,8 +34,8 @@ public class PlayerAbilitiesMixin implements GSetPlayerEntity {
         dodge = nbt.getDouble("dodge");
     }
 
-    @Inject(method = "writeNbt", at = @At("RETURN"))
-    private void write(NbtCompound nbt, CallbackInfo ci) {
+    @Inject(method = "writeNbt", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/NbtCompound;put(Ljava/lang/String;Lnet/minecraft/nbt/NbtElement;)Lnet/minecraft/nbt/NbtElement;"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
+    private void write(NbtCompound nbt, CallbackInfo ci, NbtCompound nbtCompound) {
         nbt.putDouble("strength", strength);
         nbt.putDouble("aura", aura);
         nbt.putDouble("defense", defense);

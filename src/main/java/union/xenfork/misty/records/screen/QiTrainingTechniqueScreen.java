@@ -7,16 +7,16 @@ import io.wispforest.owo.ui.component.LabelComponent;
 import io.wispforest.owo.ui.container.Containers;
 import io.wispforest.owo.ui.container.FlowLayout;
 import io.wispforest.owo.ui.core.*;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
 public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
-    private final ServerPlayerEntity player;
-    public QiTrainingTechniqueScreen(ServerPlayerEntity player) {
+    private final ClientPlayerEntity player;
+    public QiTrainingTechniqueScreen(ClientPlayerEntity player) {
         this.player = player;
 
     }
@@ -41,7 +41,6 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
         super.tick();
         if (test.text().equals(d)) {
             time++;
-
             if (time >= ran) {
                 time = 0;
                 if (isHu) {
@@ -65,7 +64,7 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
                 isHu = false;
                 time = 0;
                 ran = new Random().nextInt(10*10, 70*10);
-                System.out.println(player.getAura());
+                System.out.println(player.getAbilities().getAura());
                 test.text(d);
             }
         });
@@ -75,8 +74,7 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
                 isHu = true;
                 time = 0;
                 ran = new Random().nextInt(10*10, 70*10);
-                player.addAura(new Random().nextDouble(0.0d, 1.0001d));
-                System.out.println(player.getAura());
+                player.getAbilities().addAura(new Random().nextDouble(0.0d, 1.0001d));
                 test.text(d);
             }
         });
@@ -92,9 +90,5 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
                         .verticalAlignment(VerticalAlignment.CENTER)
                         .horizontalAlignment(HorizontalAlignment.CENTER)
         );
-    }
-
-    public PlayerEntity getPlayer() {
-        return player;
     }
 }

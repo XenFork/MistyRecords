@@ -26,7 +26,8 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "fabric-api": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "owo": "*"
   },
   "custom": {
     "loom:injected_interfaces": {
