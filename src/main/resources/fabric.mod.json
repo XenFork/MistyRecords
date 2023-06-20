@@ -17,6 +17,9 @@
     ],
     "client": [
       "union.xenfork.misty.records.MistyRecordsClient"
+    ],
+    "cardinal-components": [
+      "union.xenfork.misty.records.components.ComponentsInit"
     ]
   },
   "mixins": [
@@ -31,7 +34,6 @@
   },
   "custom": {
     "loom:injected_interfaces": {
-      "net/minecraft/entity/player/PlayerAbilities": ["union/xenfork/misty/records/face/GSetPlayerEntity"]
     }
   }
 }

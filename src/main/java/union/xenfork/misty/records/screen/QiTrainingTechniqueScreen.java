@@ -63,8 +63,8 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
             if (test.text().equals(buttonC.getMessage())) {
                 isHu = false;
                 time = 0;
-                ran = new Random().nextInt(10*10, 70*10);
-                System.out.println(player.getAbilities().getAura());
+                ran = new Random().nextInt(10, 100);
+//                System.out.println(player.getAbilities().getAura());
                 test.text(d);
             }
         });
@@ -73,8 +73,8 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
             if (test.text().equals(buttonC.getMessage())) {
                 isHu = true;
                 time = 0;
-                ran = new Random().nextInt(10*10, 70*10);
-                player.getAbilities().addAura(new Random().nextDouble(0.0d, 1.0001d));
+                ran = new Random().nextInt(10, 100);
+//                player.getAbilities().addAura(new Random().nextDouble(0.0d, 1.0001d));
                 test.text(d);
             }
         });
