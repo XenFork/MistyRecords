@@ -11,8 +11,11 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
+import union.xenfork.misty.records.components.ComponentsInit;
 
 import java.util.Random;
+
+import static union.xenfork.misty.records.components.ComponentsInit.ability;
 
 public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
     private final ClientPlayerEntity player;
@@ -30,6 +33,7 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
     private int time = 0;
     private int ran;
     boolean isHu;
+    private ButtonComponent hu, xi;
 
     @Override
     protected @NotNull OwoUIAdapter<FlowLayout> createAdapter() {
@@ -39,6 +43,8 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
     @Override
     public void tick() {
         super.tick();
+        System.out.println(hu.getX());
+        System.out.println(xi.getX());
         if (test.text().equals(d)) {
             time++;
             if (time >= ran) {
@@ -59,21 +65,23 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
                 .horizontalAlignment(HorizontalAlignment.CENTER)
                 .verticalAlignment(VerticalAlignment.CENTER);
 
-        ButtonComponent hu = Components.button(hu_, buttonC -> {
+        hu = Components.button(hu_, buttonC -> {
             if (test.text().equals(buttonC.getMessage())) {
                 isHu = false;
                 time = 0;
                 ran = new Random().nextInt(10, 100);
+                System.out.println(player.getComponent(ability).getAura());
 //                System.out.println(player.getAbilities().getAura());
                 test.text(d);
             }
         });
 
-        ButtonComponent xi = Components.button(xi_, buttonC -> {
+        xi = Components.button(xi_, buttonC -> {
             if (test.text().equals(buttonC.getMessage())) {
                 isHu = true;
                 time = 0;
                 ran = new Random().nextInt(10, 100);
+                player.getComponent(ability).addAura(new Random().nextDouble(0.0d, 1.0001d));
 //                player.getAbilities().addAura(new Random().nextDouble(0.0d, 1.0001d));
                 test.text(d);
             }
