@@ -1,52 +1,52 @@
 package union.xenfork.misty.records.face;
 
 public interface GSetPlayerEntity {
-    default double getDodge() {throw new AssertionError();}
+    double getDodge();
 
-    default void setDodge(double dodge) {}
+    void setDodge(double dodge);
 
-    default void addDodge(double d) {}
+    void addDodge(double d);
 
-    default double getHit() {throw new AssertionError();}
+    double getHit() ;
 
-    default void setHit(double hit) {}
+    void setHit(double hit);
 
-    default void addHit(double d) {}
+    void addHit(double d);
 
-    default double getStrength() {throw new AssertionError();}
-    default void setStrength(double strength) {}
-    default void addStrength(double d) {}
-    default double getAura() {throw new AssertionError();}
-    default void setAura(double aura) {}
-    default void addAura(double d) {}
-    default double getDefense() {throw new AssertionError();}
-    default void setDefense(double defense) {}
-    default void addDefense(double d) {}
-    default double getBlood() {throw new AssertionError();}
-    default void setBlood(double blood) {}
-    default void addBlood(double d) {}
-    default double getCriticalHit() {throw new AssertionError();}
-    default void setCriticalHit(double criticalHit) {}
-    default void addCriticalHit(double d) {}
-    default double getCriticalDamage() {throw new AssertionError();}
-    default void setCriticalDamage(double criticalDamage) {}
-    default void addCriticalDamage(double d) {}
+    double getStrength() ;
+    void setStrength(double strength);
+    void addStrength(double d);
+    double getAura() ;
+    void setAura(double aura);
+    void addAura(double d);
+    double getDefense() ;
+    void setDefense(double defense);
+    void addDefense(double d);
+    double getBlood() ;
+    void setBlood(double blood);
+    void addBlood(double d);
+    double getCriticalHit() ;
+    void setCriticalHit(double criticalHit);
+    void addCriticalHit(double d);
+    double getCriticalDamage() ;
+    void setCriticalDamage(double criticalDamage);
+    void addCriticalDamage(double d);
 
-    default double getSpeed() {throw new AssertionError();}
+    double getSpeed() ;
 
-    default void setSpeed(double speed) {}
+    void setSpeed(double speed);
 
-    default void addSpeed(double d) {}
+    void addSpeed(double d);
 
-    default double getEndurance() {throw new AssertionError();}
+    double getEndurance() ;
 
-    default void setEndurance(double endurance) {}
+    void setEndurance(double endurance);
 
-    default void addEndurance(double d) {}
+    void addEndurance(double d);
 
-    default double getPotential() {throw new AssertionError();}
+    double getPotential() ;
 
-    default void setPotential(double potential) {}
+    void setPotential(double potential);
 
-    default void addPotential(double d) {}
+    void addPotential(double d);
 }

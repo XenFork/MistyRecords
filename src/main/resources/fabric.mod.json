@@ -18,6 +18,9 @@
     "client": [
       "union.xenfork.misty.records.MistyRecordsClient"
     ],
+    "cardinal-components:static-init": [
+
+    ],
     "cardinal-components": [
       "union.xenfork.misty.records.components.ComponentsInit"
     ]
@@ -34,6 +37,9 @@
   },
   "custom": {
     "loom:injected_interfaces": {
-    }
+    },
+    "cardinal-components": [
+      "misty_records:ability"
+    ]
   }
 }
