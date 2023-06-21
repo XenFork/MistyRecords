@@ -74,7 +74,7 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
 //                System.out.println(player.getAbilities().getAura());
                 test.text(d);
             }
-        });
+        }).textShadow(true);
 
         xi = Components.button(xi_, buttonC -> {
             if (test.text().equals(buttonC.getMessage())) {
@@ -85,7 +85,7 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
 //                player.getAbilities().addAura(new Random().nextDouble(0.0d, 1.0001d));
                 test.text(d);
             }
-        });
+        }).textShadow(true);
 
         rootComponent.child(
                 Containers
@@ -94,7 +94,7 @@ public class QiTrainingTechniqueScreen extends BaseOwoScreen<FlowLayout> {
                         .child(hu)
                         .child(xi)
                         .padding(Insets.of(100))
-                        .surface(Surface.DARK_PANEL)
+                        .surface(Surface.PANEL)
                         .verticalAlignment(VerticalAlignment.CENTER)
                         .horizontalAlignment(HorizontalAlignment.CENTER)
         );
