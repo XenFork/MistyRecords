@@ -39,7 +39,17 @@
     "loom:injected_interfaces": {
     },
     "cardinal-components": [
-      "misty_records:ability"
+      "misty_records:aura",
+      "misty_records:dodge",
+      "misty_records:hit",
+      "misty_records:strength",
+      "misty_records:defense",
+      "misty_records:blood",
+      "misty_records:critical_hit",
+      "misty_records:critical_damage",
+      "misty_records:speed",
+      "misty_records:endurance",
+      "misty_records:potential"
     ]
   }
 }
